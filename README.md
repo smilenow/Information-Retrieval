@@ -1,4 +1,4 @@
-# Information-Retrieve
+# Information-Retrieval
 
 ##description
 实现一个简单的信息检索工具
