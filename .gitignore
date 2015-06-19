@@ -46,3 +46,7 @@ profile
 *.moved-aside
 DerivedData
 *.xcuserstate
+
+### For Html ###
+Reuters/
+*.html

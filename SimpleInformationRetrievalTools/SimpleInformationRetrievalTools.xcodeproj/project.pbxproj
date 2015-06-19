@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F2B8D311B33FE2100505056 /* Interpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */; };
 		5F6B40681B2A8E50004176F9 /* Synonym.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B40661B2A8E50004176F9 /* Synonym.cpp */; };
 		5FBFEEF81B26ECF500B11BAE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEEF71B26ECF500B11BAE /* main.cpp */; };
 		5FBFEF001B26ED7700B11BAE /* InvertedIndex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEEFE1B26ED7700B11BAE /* InvertedIndex.cpp */; };
@@ -27,6 +28,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interpreter.cpp; sourceTree = "<group>"; };
+		5F2B8D301B33FE2100505056 /* Interpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpreter.h; sourceTree = "<group>"; };
 		5F6B40661B2A8E50004176F9 /* Synonym.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Synonym.cpp; sourceTree = "<group>"; };
 		5F6B40671B2A8E50004176F9 /* Synonym.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Synonym.h; sourceTree = "<group>"; };
 		5FBFEEF41B26ECF500B11BAE /* SimpleInformationRetrievalTools */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SimpleInformationRetrievalTools; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +73,8 @@
 			isa = PBXGroup;
 			children = (
 				5FBFEEF71B26ECF500B11BAE /* main.cpp */,
+				5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */,
+				5F2B8D301B33FE2100505056 /* Interpreter.h */,
 				5FBFEF041B2753F100B11BAE /* TopK.cpp */,
 				5FBFEF051B2753F100B11BAE /* TopK.h */,
 				5FBFEF011B274A4500B11BAE /* BoolQuery.cpp */,
@@ -140,6 +145,7 @@
 			files = (
 				5FBFEF031B274A4500B11BAE /* BoolQuery.cpp in Sources */,
 				5FBFEEF81B26ECF500B11BAE /* main.cpp in Sources */,
+				5F2B8D311B33FE2100505056 /* Interpreter.cpp in Sources */,
 				5FBFEF001B26ED7700B11BAE /* InvertedIndex.cpp in Sources */,
 				5F6B40681B2A8E50004176F9 /* Synonym.cpp in Sources */,
 				5FBFEF061B2753F100B11BAE /* TopK.cpp in Sources */,
