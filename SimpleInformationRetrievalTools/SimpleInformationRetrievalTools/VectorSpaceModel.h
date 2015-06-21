@@ -1,5 +1,5 @@
 //
-//  interpreter.cpp
+//  VectorSpaceModel.h
 //  SimpleInformationRetrievalTools
 //
 //  Created by ryecao on 6/21/15.
@@ -24,6 +24,7 @@ public:
 	~VectorSpaceModel();
 	// <DocID, td-idf> (sorted)
 	vector<pair<string, double>> GetRankingResult(vector<pair<string,string> >& query);
+	vector<pair<string, double>> GetRankingResult(vector<pair<string,string> >& query, unordered_map<string, double> static_scores);
 private:
 	void NormalizeVector(vector<double>& v);
 	double GetScore (vector<double>& v1, vector<double>& v2);

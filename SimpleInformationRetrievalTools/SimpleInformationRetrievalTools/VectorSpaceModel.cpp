@@ -1,5 +1,5 @@
 //
-//  interpreter.cpp
+//  VectorSpaceModel.cpp
 //  SimpleInformationRetrievalTools
 //
 //  Created by ryecao on 6/21/15.
@@ -156,6 +156,22 @@ vector<pair<string, double>> VectorSpaceModel::GetRankingResult(vector<pair<stri
 		doc_score.push_back(make_pair(d.first, score));
 	}
 
+
+	sort(doc_score.begin(), doc_score.end(), [](pair<string, double> s1, pair<string, double> s2){
+													return s1.second > s2.second;
+												});
+
+	return doc_score;
+}
+
+vector<pair<string, double> > VectorSpaceModel::GetRankingResult(vector<pair<string,string> >& query, unordered_map<string, double> static_scores){
+	vector<pair<string, double> >doc_score;
+
+	doc_score = VectorSpaceModel::GetRankingResult(query);
+
+	for(auto &d: doc_score){
+		d.second += static_scores[d.first];
+	}
 
 	sort(doc_score.begin(), doc_score.end(), [](pair<string, double> s1, pair<string, double> s2){
 													return s1.second > s2.second;
