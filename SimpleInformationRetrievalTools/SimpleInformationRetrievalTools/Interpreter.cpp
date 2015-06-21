@@ -85,12 +85,6 @@ vector<pair<string,string> > Interpreter::ProcessQuery(const string query){
 		}
 	}
 
-	for (auto &b: bool_op_pos)
-	{
-		cout<<b <<" ";
-	}
-	cout<<endl;
-	
 	if (_search_type == BOOL){
 		string segment = "";
 		int bool_pos = 0;	
