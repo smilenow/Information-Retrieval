@@ -54,3 +54,7 @@ Reuters/
 ### Clion ###
 SimpleInformationRetrievalTools/.idea/*
 SimpleInformationRetrievalTools/CMakeLists.txt
+
+### Inverted Index & Posting List Files###
+InvertedIndexList.txt
+PositingList.txt
