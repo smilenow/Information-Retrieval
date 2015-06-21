@@ -50,3 +50,7 @@ DerivedData
 ### For Html ###
 Reuters/
 *.html
+
+### Clion ###
+SimpleInformationRetrievalTools/.idea/*
+SimpleInformationRetrievalTools/CMakeLists.txt
