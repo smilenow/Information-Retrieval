@@ -17,8 +17,12 @@
 #include "Interpreter.h"
 #include "VectorSpaceModel.h"
 #include "StaticQualityScore.h"
+<<<<<<< HEAD
 #include "SpellingChecker.h"
 #include "ChampionList.h"
+=======
+#include "PhraseQuery.h"
+>>>>>>> origin/master
 
 using namespace std;
 
@@ -29,6 +33,7 @@ SpellingChecker *SC = new SpellingChecker();
 ChampionList *CL;
 VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
+PhraseQuery *PQ;
 
 int main(int argc, const char * argv[]) {
     II->LoadStopWordList();

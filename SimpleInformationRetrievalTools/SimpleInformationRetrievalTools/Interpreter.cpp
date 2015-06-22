@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Zhendong Cao. All rights reserved.
 //
 
-#include "interpreter.h"
+#include "Interpreter.h"
 #include <iostream>
 #include <sstream>
 #include <string>
