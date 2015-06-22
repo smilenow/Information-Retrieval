@@ -17,6 +17,7 @@
 #include "Interpreter.h"
 #include "VectorSpaceModel.h"
 #include "StaticQualityScore.h"
+#include "PhraseQuery.h"
 
 using namespace std;
 
@@ -25,6 +26,7 @@ Synonym *SYN = new Synonym();
 Interpreter *IP = new Interpreter();
 VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
+PhraseQuery *PQ;
 
 int main(int argc, const char * argv[]) {
     II->LoadStopWordList();
