@@ -86,25 +86,27 @@ string SpellingChecker::CheckWord(const string & queryword)
 	return result;
 }
 
-vector<string> &SpellingChecker::SplitAndCheck(const string & query, char delimiter, vector<string> & words)
+// vector<string> &SpellingChecker::SplitAndCheck(const string & query, char delimiter, vector<string> & words)
+// {
+// 	stringstream querystream(query);
+// 	string item;
+// 	while (getline(querystream, item, delimiter)) {
+// 		if (!item.empty())
+// 		{
+// 			words.push_back(CheckWord(item));
+// 		}
+// 	}
+// 	return words;
+// }
+
+vector< pair<string, string> > SpellingChecker::CheckQuery(vector< pair<string, string> > &query)
 {
-	stringstream querystream(query);
-	string item;
-	while (getline(querystream, item, delimiter)) {
-		if (!item.empty())
-		{
-			words.push_back(CheckWord(item));
-		}
+	for (auto &item : query)
+	{
+		item.second = CheckWord(item.second);
 	}
-	return words;
-}
 
-vector<string> SpellingChecker::CheckQuery(const string & query)
-{
-	vector<string> words;
-	SplitAndCheck(query, ' ', words);
-
-	return words;
+	return query;
 }
 
 int SpellingChecker::LoadDict()
@@ -143,9 +145,7 @@ int SpellingChecker::LoadDict()
 	while (getline(in, line))
     {
         pos = line.find_last_of(':');
-        dict.insert(word, pair<string, int>(line.substr(0, pos), atoi(line.substr(pos + 1).c_str())));
-        // MingW does not have stoi
-        // dict.insert(word, pair<string, int>(line.substr(0, pos), stoi(line.substr(pos + 1))));
+        dict.insert(word, pair<string, int>(line.substr(0, pos), stoi(line.substr(pos + 1))));
     }
 
     in.close();
@@ -157,12 +157,23 @@ SpellingChecker::SpellingChecker()
 	LoadDict();
 }
 
-/*int main(int argc, char const *argv[])
-{
-	SpellingChecker * SC = new SpellingChecker();
-	while(true) {
-		cin >> temp;
-	    cout << SC->CheckWord(temp);
-	}
-	return 0;
-}*/
+// int main(int argc, char const *argv[])
+// {
+// 	vector< pair<string, string> > v;
+// 	SpellingChecker *SC = new SpellingChecker();
+// 	string word;
+
+// 	while(true) {
+// 		while(getline(cin, word, ' ')) {
+// 		    v.push_back(make_pair("", word));
+// 		}
+// 		cout << "fuck";
+// 		SC->CheckQuery(v);
+// 	    for (auto &item : t)
+// 		{
+// 			cout << item.second << endl;
+// 		}
+// 	}
+
+// 	return 0;
+// }

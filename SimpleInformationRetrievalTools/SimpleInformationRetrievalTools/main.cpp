@@ -17,12 +17,16 @@
 #include "Interpreter.h"
 #include "VectorSpaceModel.h"
 #include "StaticQualityScore.h"
+#include "SpellingChecker.h"
+#include "ChampionList.h"
 
 using namespace std;
 
 InvertedIndex *II = new InvertedIndex();
 Synonym *SYN = new Synonym();
 Interpreter *IP = new Interpreter();
+SpellingChecker *SC = new SpellingChecker();
+ChampionList *CL;
 VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
 
@@ -33,14 +37,16 @@ int main(int argc, const char * argv[]) {
     II->PrintPositingList();
     SYN->BuildSynonymList();
     VSM = new VectorSpaceModel(II->InvertedIndexListMap);
+    CL = new ChampionList(II->InvertedIndexList);
 
     cout<<"Inverted Index Size: "<< II->InvertedIndexListMap.size()<<endl;
-    
+
     while(true){
     	string query;
     	cout<<"> ";
     	getline(cin, query);
 	    auto q  = IP->ProcessQuery(query);
+	    SC->CheckQuery(q);
 
 	    unordered_map<string, double> SQS_score;
 	    if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
@@ -57,10 +63,15 @@ int main(int argc, const char * argv[]) {
 	    if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
 		    res = VSM->GetRankingResult(q, SQS_score);
 	    }
-	    else{
-		    res = VSM->GetRankingResult(q);
+	    else if (IP->GetTopKMode() == TOP_K_CHAMPION_LIST)
+	    {
+	    	res = CL->GetRankingResult(q);
 	    }
-	    
+	    else
+	    {
+	    	res = VSM->GetRankingResult(q);
+	    }
+
 
 	    cout<<"---------------- TOP 50 RESULTS ----------------" <<endl;
 	    int i= 0;

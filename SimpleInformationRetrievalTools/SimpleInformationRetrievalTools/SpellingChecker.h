@@ -20,12 +20,12 @@ class SpellingChecker
 public:
 	SpellingChecker();
 	~SpellingChecker();
-	string CheckWord(const string & queryword);
-	vector<string> CheckQuery(const string & query);
+	vector< pair<string, string> > CheckQuery(vector< pair<string, string> > &query);
 private:
 	map<string, int> dict;
 	int LoadDict();
 	int CalculateEditDist(const string & a, const string & b);
-	vector<string> &SplitAndCheck(const string & query, char delimiter, vector<string> & words);
+	string CheckWord(const string & queryword);
+	// vector<string> &SplitAndCheck(const string & query, char delimiter, vector<string> & words);
 };
 #endif
