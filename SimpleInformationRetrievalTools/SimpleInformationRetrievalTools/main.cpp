@@ -17,12 +17,9 @@
 #include "Interpreter.h"
 #include "VectorSpaceModel.h"
 #include "StaticQualityScore.h"
-<<<<<<< HEAD
 #include "SpellingChecker.h"
 #include "ChampionList.h"
-=======
 #include "PhraseQuery.h"
->>>>>>> origin/master
 
 using namespace std;
 
