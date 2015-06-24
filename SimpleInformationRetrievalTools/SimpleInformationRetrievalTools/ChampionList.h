@@ -19,6 +19,7 @@ private:
 	vector<InvertedIndex::InvertedIndexListSubNode>::iterator FindDoc(vector<InvertedIndex::InvertedIndexListSubNode> &v, const string & d);
 	map<string, double>::iterator FindQueryWord(map<string, double> & m, const string & s);
 	unordered_map<string, vector<InvertedIndex::InvertedIndexListSubNode>>::iterator FindTerm(const string & s);
+	map<string, map<string, double> >::iterator FindDocInMap(map<string, map<string, double> > &m, string & s);
 	void Normalize(map<string, double> &m);
 	vector< pair<string, double> > GetScore(map<string, double> & q, map<string, map<string, double> > & d);
 

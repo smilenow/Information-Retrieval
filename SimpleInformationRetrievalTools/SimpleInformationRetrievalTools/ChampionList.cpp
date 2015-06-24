@@ -9,15 +9,12 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 	map<string, double> query_tf;
 	vector< pair<string, double> > Scores;
 
+	// find all set A
+	begin = clock();
 	for (auto &item : query)
 	{
 		auto pos = _ChampionListMap.find(item.second);
-		if (pos == _ChampionListMap.end())
-		{
-			/* code */
-			// cant find the queryword in dict
-		}
-		else
+		if (pos != _ChampionListMap.end())
 		{
 			for (auto &doc : pos->second)
 			{
@@ -32,9 +29,10 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 
 	TotalNumberOfDocs = QueryDocs.size();
 
-	// doc tf
-	for (auto &doc : QueryDocs)
+	// doc tf TOO NAIVE TOO SLOW
+/*	for (auto &doc : QueryDocs)
 	{
+		begin = clock();
 		map<string, double> doc_tf_map;
 		for (auto &t : _ChampionListMap)
 		{
@@ -45,7 +43,36 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 			}
 		}
 		doc_tf.insert(make_pair(doc, doc_tf_map));
+		end = clock();
+		cout << doc + " " << end - begin << endl;
+	}*/
+
+	// begin = clock();
+	// doc tf
+	// better version
+	for (auto &t : _ChampionListMap)
+	{
+		for (auto &tt : t.second)
+		{
+			auto doc = find(QueryDocs.begin(), QueryDocs.end(), tt.DocID);
+			if (doc != QueryDocs.end())
+			{
+				auto ttt = FindDocInMap(doc_tf, tt.DocID);
+				if (ttt != doc_tf.end())
+				{
+					ttt->second.insert(make_pair(t.first, tt.sum));
+				}
+				else
+				{
+					map<string, double> doc_tf_map;
+					doc_tf_map.insert(make_pair(t.first, tt.sum));
+					doc_tf.insert(make_pair(tt.DocID, doc_tf_map));
+				}
+			}
+		}
 	}
+	// end = clock();
+	// cout << end - begin << endl;
 
 	// query tf
 	for (auto &item : query)
@@ -79,13 +106,28 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 		Normalize(item.second);
 	}
 
+
 	Scores = GetScore(query_tf, doc_tf);
+
 
 	sort(Scores.begin(), Scores.end(), [](pair<string, double> &t1, pair<string, double> &t2){
 		return t1.second > t2.second;
 	});
 
+
 	return Scores;
+}
+
+map<string, map<string, double> >::iterator ChampionList::FindDocInMap(map<string, map<string, double> > &m, string & s)
+{
+	for (auto it = m.begin(); it != m.end(); it++)
+	{
+		if (it->first == s)
+		{
+			return it;
+		}
+	}
+	return m.end();
 }
 
 vector< pair<string, double> > ChampionList::GetScore(map<string, double> & q, map<string, map<string, double> > & d)
