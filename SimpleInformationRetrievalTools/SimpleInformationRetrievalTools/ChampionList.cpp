@@ -10,7 +10,7 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 	vector< pair<string, double> > Scores;
 
 	// find all set A
-	begin = clock();
+	// begin = clock();
 	for (auto &item : query)
 	{
 		auto pos = _ChampionListMap.find(item.second);
