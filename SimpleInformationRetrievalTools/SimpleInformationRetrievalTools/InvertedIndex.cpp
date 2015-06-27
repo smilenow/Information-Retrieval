@@ -133,7 +133,7 @@ void InvertedIndex::BuildFromFiles(){
 void InvertedIndex::LoadStopWordList(){
     ifstream fin;
     string str;
-    string filedir = "./StopWordLongList.txt";
+    string filedir = "./StopWordList_25.txt";
     fin.open(filedir.c_str(),ios::in);
     if (fin.is_open()){
         while (fin.peek() != EOF){
