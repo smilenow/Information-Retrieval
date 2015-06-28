@@ -4,21 +4,23 @@ PhraseQuery::PhraseQuery(type_PI &PI){
   _k=3;
 }
 
-vector<string> PhraseQuery::GetRankingResult(const vector<pair<string, string> >&qq){
+vector<pair<string,double> >PhraseQuery::GetRankingResult(const vector<pair<string, string> >&qq){
   auto q=qq;
   for(auto &e:q)
     for(auto &c:e.second)
       c=tolower(c);
   if(q.size()<2){
     puts("You should input at lease 2 words for phrase query.");
-    return vector<string>();
+    return vector<pair<string,double> >();
   }
   vector<vector<string> >cres;
   for(size_t i=0;i<q.size()-1;++i){
     cres.push_back(query(q[i].second,q[i+1].second));
   }
   auto res=get_intersect(cres);
-  return res;
+  vector<pair<string,double> >rr;
+  for(auto &e:res)rr.push_back(make_pair(e,0.0));
+  return rr;
 }
 
 vector<string> PhraseQuery::query(const string &qt1,const string &qt2){

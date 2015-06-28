@@ -20,6 +20,7 @@
 #include "SpellingChecker.h"
 #include "ChampionList.h"
 #include "PhraseQuery.h"
+#include "ClusterPruning.h"
 
 using namespace std;
 
@@ -32,6 +33,7 @@ VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
 PhraseQuery *PQ;
 TopK *TOPKHEAP;
+ClusterPruning *CP;
 
 int main(int argc, const char * argv[]) {
     II->LoadStopWordList();
@@ -41,6 +43,7 @@ int main(int argc, const char * argv[]) {
     SYN->BuildSynonymList();
     VSM = new VectorSpaceModel(II->InvertedIndexListMap);
     CL = new ChampionList(II->InvertedIndexList);
+    CP=new ClusterPruning(II->InvertedIndexListMap);
 
     cout<<"Inverted Index Size: "<< II->InvertedIndexListMap.size()<<endl;
 
@@ -49,11 +52,14 @@ int main(int argc, const char * argv[]) {
     	cout<<"> ";
     	getline(cin, query);
 	    auto q  = IP->ProcessQuery(query);
-	    SC->CheckQuery(q);
-        
-        if (IP->GetSynonymMode() == SYNONYM_ON) q = SYN->findSynonym(q);
+	    auto oldq=q;
 
-	    unordered_map<string, double> SQS_score;
+	    SC->CheckQuery(q);
+
+      if (IP->GetSynonymMode() == SYNONYM_ON) q = SYN->findSynonym(q);
+
+
+      unordered_map<string, double> SQS_score;
 	    if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
 	    	SQS = new StaticQualityScore(II->InvertedIndexList);
 	    	SQS_score = SQS->GetStaticQualityScore();
@@ -68,22 +74,26 @@ int main(int argc, const char * argv[]) {
 	    if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
 		    res = VSM->GetRankingResult(q, SQS_score);
 	    }
-	    else if (IP->GetTopKMode() == TOP_K_CHAMPION_LIST)
-	    {
-	    	res = CL->GetRankingResult(q);
+	    else if (IP->GetTopKMode() == TOP_K_CLUSTER_PRUNING){        
+	    	res = CP->GetRankingResult(q);
 	    }
-            else if (IP->GetSearchType() == TOP_K_HEAP){
-            	res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
-            }
-            else if (IP->GetSearchType() == BOOL){
-            	res = BoolQuery::FindBoolQuery(q);
-            }
+      else if (IP->GetTopKMode() == TOP_K_CHAMPION_LIST){
+        res = CL->GetRankingResult(q);
+      }
+      else if (IP->GetSearchType() == TOP_K_HEAP){
+        res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
+      }
+      else if (IP->GetSearchType() == BOOL){
+        res = BoolQuery::FindBoolQuery(q);
+      }
+      else if (IP->GetSearchType() == PHRASE_SEARCH){
+        res=PQ->GetRankingResult(q);
+      }
 	    else
 	    {
 	    	res = VSM->GetRankingResult(q);
 	    }
-
-
+      
 	    cout<<"---------------- TOP 50 RESULTS ----------------" <<endl;
 	    int i= 0;
 	    for(auto &r:res){

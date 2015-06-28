@@ -30,7 +30,7 @@ public:
 public:
   PhraseQuery(type_PI &PI);
   virtual ~PhraseQuery(){};
-  vector<string> GetRankingResult(const vector<pair<string, string> >&q);
+  vector<pair<string,double> > GetRankingResult(const vector<pair<string, string> >&q);
 
 private:
   vector<string> query(const string &qt1,const string &qt2);
