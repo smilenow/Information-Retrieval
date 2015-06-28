@@ -31,6 +31,7 @@ ChampionList *CL;
 VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
 PhraseQuery *PQ;
+TopK *TOPKHEAP;
 
 int main(int argc, const char * argv[]) {
     II->LoadStopWordList();
@@ -49,6 +50,8 @@ int main(int argc, const char * argv[]) {
     	getline(cin, query);
 	    auto q  = IP->ProcessQuery(query);
 	    SC->CheckQuery(q);
+        
+        if (IP->GetSynonymMode() == SYNONYM_ON) q = SYN->findSynonym(q);
 
 	    unordered_map<string, double> SQS_score;
 	    if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
@@ -69,6 +72,12 @@ int main(int argc, const char * argv[]) {
 	    {
 	    	res = CL->GetRankingResult(q);
 	    }
+        else if (IP->GetSearchType() == TOP_K_HEAP){
+            res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
+        }
+        else if (IP->GetSearchType() == BOOL){
+            res = BoolQuery::FindBoolQuery(q);
+        }
 	    else
 	    {
 	    	res = VSM->GetRankingResult(q);

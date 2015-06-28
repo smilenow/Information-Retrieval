@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F13EA441B4028A4004E9E41 /* ChampionList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F13EA3A1B4028A4004E9E41 /* ChampionList.cpp */; };
+		5F13EA451B4028A4004E9E41 /* PhraseQuery.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F13EA3C1B4028A4004E9E41 /* PhraseQuery.cpp */; };
+		5F13EA461B4028A4004E9E41 /* SpellingChecker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F13EA3E1B4028A4004E9E41 /* SpellingChecker.cpp */; };
+		5F13EA471B4028A4004E9E41 /* StaticQualityScore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F13EA401B4028A4004E9E41 /* StaticQualityScore.cpp */; };
+		5F13EA481B4028A4004E9E41 /* VectorSpaceModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F13EA421B4028A4004E9E41 /* VectorSpaceModel.cpp */; };
 		5F2B8D311B33FE2100505056 /* Interpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */; };
 		5F6B40681B2A8E50004176F9 /* Synonym.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B40661B2A8E50004176F9 /* Synonym.cpp */; };
 		5FBFEEF81B26ECF500B11BAE /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5FBFEEF71B26ECF500B11BAE /* main.cpp */; };
@@ -28,6 +33,17 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5F13EA391B4028A4004E9E41 /* c.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = c.sh; sourceTree = "<group>"; };
+		5F13EA3A1B4028A4004E9E41 /* ChampionList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ChampionList.cpp; sourceTree = "<group>"; };
+		5F13EA3B1B4028A4004E9E41 /* ChampionList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChampionList.h; sourceTree = "<group>"; };
+		5F13EA3C1B4028A4004E9E41 /* PhraseQuery.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PhraseQuery.cpp; sourceTree = "<group>"; };
+		5F13EA3D1B4028A4004E9E41 /* PhraseQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhraseQuery.h; sourceTree = "<group>"; };
+		5F13EA3E1B4028A4004E9E41 /* SpellingChecker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpellingChecker.cpp; sourceTree = "<group>"; };
+		5F13EA3F1B4028A4004E9E41 /* SpellingChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpellingChecker.h; sourceTree = "<group>"; };
+		5F13EA401B4028A4004E9E41 /* StaticQualityScore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StaticQualityScore.cpp; sourceTree = "<group>"; };
+		5F13EA411B4028A4004E9E41 /* StaticQualityScore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StaticQualityScore.h; sourceTree = "<group>"; };
+		5F13EA421B4028A4004E9E41 /* VectorSpaceModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VectorSpaceModel.cpp; sourceTree = "<group>"; };
+		5F13EA431B4028A4004E9E41 /* VectorSpaceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VectorSpaceModel.h; sourceTree = "<group>"; };
 		5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Interpreter.cpp; sourceTree = "<group>"; };
 		5F2B8D301B33FE2100505056 /* Interpreter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Interpreter.h; sourceTree = "<group>"; };
 		5F6B40661B2A8E50004176F9 /* Synonym.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Synonym.cpp; sourceTree = "<group>"; };
@@ -72,6 +88,17 @@
 		5FBFEEF61B26ECF500B11BAE /* SimpleInformationRetrievalTools */ = {
 			isa = PBXGroup;
 			children = (
+				5F13EA391B4028A4004E9E41 /* c.sh */,
+				5F13EA3A1B4028A4004E9E41 /* ChampionList.cpp */,
+				5F13EA3B1B4028A4004E9E41 /* ChampionList.h */,
+				5F13EA3C1B4028A4004E9E41 /* PhraseQuery.cpp */,
+				5F13EA3D1B4028A4004E9E41 /* PhraseQuery.h */,
+				5F13EA3E1B4028A4004E9E41 /* SpellingChecker.cpp */,
+				5F13EA3F1B4028A4004E9E41 /* SpellingChecker.h */,
+				5F13EA401B4028A4004E9E41 /* StaticQualityScore.cpp */,
+				5F13EA411B4028A4004E9E41 /* StaticQualityScore.h */,
+				5F13EA421B4028A4004E9E41 /* VectorSpaceModel.cpp */,
+				5F13EA431B4028A4004E9E41 /* VectorSpaceModel.h */,
 				5FBFEEF71B26ECF500B11BAE /* main.cpp */,
 				5F2B8D2F1B33FE2100505056 /* Interpreter.cpp */,
 				5F2B8D301B33FE2100505056 /* Interpreter.h */,
@@ -144,11 +171,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FBFEF031B274A4500B11BAE /* BoolQuery.cpp in Sources */,
+				5F13EA451B4028A4004E9E41 /* PhraseQuery.cpp in Sources */,
 				5FBFEEF81B26ECF500B11BAE /* main.cpp in Sources */,
 				5F2B8D311B33FE2100505056 /* Interpreter.cpp in Sources */,
 				5FBFEF001B26ED7700B11BAE /* InvertedIndex.cpp in Sources */,
+				5F13EA441B4028A4004E9E41 /* ChampionList.cpp in Sources */,
 				5F6B40681B2A8E50004176F9 /* Synonym.cpp in Sources */,
 				5FBFEF061B2753F100B11BAE /* TopK.cpp in Sources */,
+				5F13EA481B4028A4004E9E41 /* VectorSpaceModel.cpp in Sources */,
+				5F13EA471B4028A4004E9E41 /* StaticQualityScore.cpp in Sources */,
+				5F13EA461B4028A4004E9E41 /* SpellingChecker.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -18,7 +18,7 @@ class TopK{
 public:
     TopK();
     virtual ~TopK();
-    vector<string> TopK_Heap(int, vector<pair<string,double>>);
+    vector<pair<string, double>> TopK_Heap(int, vector<pair<string,double>>);
 private:
     void BuildHeap(vector<pair<string,double>>&);
     void heapify(int);

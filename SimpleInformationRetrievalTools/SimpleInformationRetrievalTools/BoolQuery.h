@@ -18,7 +18,7 @@ class BoolQuery{
 public:
     BoolQuery(){};
     virtual ~BoolQuery(){};
-    static vector<string> FindBoolQuery(vector<pair<string,string>>);
+    static vector<pair<string, double>> FindBoolQuery(vector<pair<string,string>>);
 };
 
 #endif /* defined(__SimpleInformationRetrievalTools__BoolQuery__) */

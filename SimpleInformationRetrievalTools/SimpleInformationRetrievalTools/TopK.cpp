@@ -16,15 +16,15 @@ TopK::~TopK(){
     TopK_Max_Heap.clear();
 }
 
-vector<string> TopK::TopK_Heap(int K, vector<pair<string, double> > DocScore){
-    vector<string> ret;
+vector<pair<string, double> > TopK::TopK_Heap(int K, vector<pair<string, double> > DocScore){
+    vector<pair<string, double>> ret;
     
     heapsize = (int)DocScore.size();
     TopK_Max_Heap.resize(heapsize+1);
     BuildHeap(DocScore);
     
     for (int i=0;i<std::min(K,(int)DocScore.size());i++){
-        ret.push_back(TopK_Max_Heap[1].first);
+        ret.push_back(make_pair(TopK_Max_Heap[1].first,TopK_Max_Heap[1].second));
         heapdelete();
     }
     

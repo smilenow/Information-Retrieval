@@ -8,8 +8,8 @@
 
 #include "BoolQuery.h"
 
-vector<string> BoolQuery::FindBoolQuery(vector<pair<string, string> > query){
-    vector<string> ret;
+vector<pair<string, double>> BoolQuery::FindBoolQuery(vector<pair<string, string> > query){
+    vector<pair<string, double>> ret;
     unordered_map<string, int> umap,tmp;
 
     for (auto &i:II->AllDoc) umap[i] = 1;
@@ -32,7 +32,7 @@ vector<string> BoolQuery::FindBoolQuery(vector<pair<string, string> > query){
     }
     
     for (auto &i:umap)
-        if (i.second == 1) ret.push_back(i.first);
+        if (i.second == 1) ret.push_back(make_pair(i.first,0.0));
     
     return ret;
 }
