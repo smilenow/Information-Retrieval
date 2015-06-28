@@ -1,5 +1,4 @@
 #include "ChampionList.h"
-#include "Interpreter.h"
 
 vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<string, string> >& query)
 {

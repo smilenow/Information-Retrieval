@@ -58,4 +58,3 @@ SimpleInformationRetrievalTools/CMakeLists.txt
 ### Inverted Index & Posting List & Frequency Dict Files###
 InvertedIndexList.txt
 PositingList.txt
-FrequencyDict.txt
