@@ -72,12 +72,12 @@ int main(int argc, const char * argv[]) {
 	    {
 	    	res = CL->GetRankingResult(q);
 	    }
-        else if (IP->GetSearchType() == TOP_K_HEAP){
-            res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
-        }
-        else if (IP->GetSearchType() == BOOL){
-            res = BoolQuery::FindBoolQuery(q);
-        }
+            else if (IP->GetSearchType() == TOP_K_HEAP){
+            	res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
+            }
+            else if (IP->GetSearchType() == BOOL){
+            	res = BoolQuery::FindBoolQuery(q);
+            }
 	    else
 	    {
 	    	res = VSM->GetRankingResult(q);
