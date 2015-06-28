@@ -1,1 +1,1 @@
-g++ Synonym.cpp Invertedindex.cpp Interpreter.cpp BoolQuery.cpp ChampionList.cpp PhraseQuery.cpp SpellingChecker.cpp StaticQualityScore.cpp TopK.cpp VectorSpaceModel.cpp main.cpp -o main -O3 -std=c++14
+g++ Synonym.cpp Invertedindex.cpp Interpreter.cpp BoolQuery.cpp ChampionList.cpp PhraseQuery.cpp SpellingChecker.cpp StaticQualityScore.cpp TopK.cpp VectorSpaceModel.cpp main.cpp -o main -O3 -std=c++11

@@ -229,7 +229,7 @@ void ChampionList::BuildChampionList(vector<InvertedIndex::InvertedIndexListNode
 		InvertedIndex::InvertedIndexListNode ChampionListNode(node.term);
 		vector<InvertedIndex::InvertedIndexListSubNode> value;
 		sort(node.value.begin(), node.value.end(),[]
-			(auto const& a, auto const& b) { return a.sum > b.sum; });
+			(InvertedIndex::InvertedIndexListSubNode & a, InvertedIndex::InvertedIndexListSubNode & b) { return a.sum > b.sum; });
 		DocCount = (node.value.size() + 1) / 2;
 		DocCount = min(100, DocCount);
 		halfOfDoc = 0;
