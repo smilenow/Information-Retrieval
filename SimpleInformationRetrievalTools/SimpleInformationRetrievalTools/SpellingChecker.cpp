@@ -83,21 +83,15 @@ string SpellingChecker::CheckWord(const string & queryword)
 		}
 	}
 
-	return result;
+	if (minDist <= 3)
+	{
+		return result
+	}
+	else
+	{
+		return queryword;
+	}
 }
-
-// vector<string> &SpellingChecker::SplitAndCheck(const string & query, char delimiter, vector<string> & words)
-// {
-// 	stringstream querystream(query);
-// 	string item;
-// 	while (getline(querystream, item, delimiter)) {
-// 		if (!item.empty())
-// 		{
-// 			words.push_back(CheckWord(item));
-// 		}
-// 	}
-// 	return words;
-// }
 
 vector< pair<string, string> > SpellingChecker::CheckQuery(vector< pair<string, string> > &query)
 {
@@ -111,24 +105,6 @@ vector< pair<string, string> > SpellingChecker::CheckQuery(vector< pair<string, 
 
 int SpellingChecker::LoadDict()
 {
-	// json version using rapidjson
-	// FILE* fp = fopen("dict.json", "rb"); // 非Windows平台使用"r"
-	// char readBuffer[65536];
-	// rapidjson::FileReadStream is(fp, readBuffer, sizeof(readBuffer));
-
-	// rapidjson::Document d;
-	// d.ParseStream(is);
-
-	// auto word = dict.begin();
-	// for (auto iter = d.MemberBegin(); iter != d.MemberEnd(); ++iter)
-	// {
-	// 	dict.insert(word, pair<string, int>(iter->name.GetString(), iter->value.GetInt()));
-	// }
-
-	// fclose(fp);
-
-	// custom parsing
-
 	ifstream in;
 	string line;
 	int pos;
@@ -156,24 +132,3 @@ SpellingChecker::SpellingChecker()
 {
 	LoadDict();
 }
-
-// int main(int argc, char const *argv[])
-// {
-// 	vector< pair<string, string> > v;
-// 	SpellingChecker *SC = new SpellingChecker();
-// 	string word;
-
-// 	while(true) {
-// 		while(getline(cin, word, ' ')) {
-// 		    v.push_back(make_pair("", word));
-// 		}
-// 		cout << "fuck";
-// 		SC->CheckQuery(v);
-// 	    for (auto &item : t)
-// 		{
-// 			cout << item.second << endl;
-// 		}
-// 	}
-
-// 	return 0;
-// }

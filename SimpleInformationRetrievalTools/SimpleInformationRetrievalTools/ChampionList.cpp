@@ -46,7 +46,6 @@ vector< pair<string, double> > ChampionList::GetRankingResult(vector< pair<strin
 		cout << doc + " " << end - begin << endl;
 	}*/
 
-	// begin = clock();
 	// doc tf
 	// better version
 	for (auto &t : _ChampionListMap)
@@ -248,42 +247,3 @@ void ChampionList::BuildChampionListMap()
 		_ChampionListMap.insert(make_pair(node.term, node.value));
 	}
 }
-
-// int main(int argc, char const *argv[])
-// {
-// 	InvertedIndex *II = new InvertedIndex();
-// 	II->LoadStopWordList();
-//     II->BuildFromFiles();
-//     Interpreter *IP = new Interpreter();
-
-// 	ChampionList *CL = new ChampionList(II->InvertedIndexList);
-
-// 	while(true){
-//     	string query;
-//     	cout<<"> ";
-//     	getline(cin, query);
-//     	auto q  = IP->ProcessQuery(query);
-
-// 	    for(auto &r:q){
-// 	    	cout <<"op: "<<r.first<<" term: "<<r.second<<endl;
-// 	    }
-
-// 	    vector<pair<string, double>> res;
-
-// 	    res = CL->GetRankingResult(q);
-
-// 	    cout<<"---------------- TOP 50 RESULTS ----------------" <<endl;
-// 	    int i= 0;
-// 	    for(auto &r:res){
-// 	    	cout <<"docID: "<<r.first<<" score: "<<r.second<<endl;
-// 	    	i++;
-// 	    	if (i == 50){
-// 	    		break;
-// 	    	}
-// 	    }
-
-// 	    cout<<"---------------- TOP 50 RESULTS ----------------" <<endl;
-//     }
-
-// 	return 0;
-// }
