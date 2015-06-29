@@ -96,7 +96,9 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 						result.push_back(make_pair("AND",segment.substr(0, segment.size()-1)));
 					}
 					else{
-						result.push_back(make_pair(query_vector[bool_op_pos[bool_pos-1]],segment.substr(0, segment.size()-1)));
+						string str = query_vector[bool_op_pos[bool_pos-1]];
+					    transform(str.begin(), str.end(), str.begin(), ::toupper);
+						result.push_back(make_pair(str, segment.substr(0, segment.size()-1)));
 					}
 				}
 				bool_pos++;
@@ -105,8 +107,9 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 			}
 			segment += query_vector[i] + " ";
 		}	
-
-		result.push_back(make_pair(query_vector[bool_op_pos[bool_pos-1]],segment.substr(0, segment.size()-1)));
+		string str = query_vector[bool_op_pos[bool_pos-1]];
+	    transform(str.begin(), str.end(), str.begin(), ::toupper);
+		result.push_back(make_pair(str, segment.substr(0, segment.size()-1)));
 
 	}
 	else{
@@ -121,5 +124,14 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 			filtered_result.push_back(t);
 		}
 	}
+
+	// for(auto &t: result){
+	// 	cout<<"1op: "<<t.first<<"term: "<<t.second<<endl;
+	// }
+
+	// for(auto &t: filtered_result){
+	// 	cout<<"2op: "<<t.first<<"term: "<<t.second<<endl;
+	// }
+
 	return filtered_result;
 }

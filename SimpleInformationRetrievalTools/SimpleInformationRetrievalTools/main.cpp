@@ -45,7 +45,7 @@ int main(int argc, const char * argv[]) {
 	CL = new ChampionList(II->InvertedIndexList);
 	CP=new ClusterPruning(II->InvertedIndexListMap);
 	PQ=new PhraseQuery(II->PositingListMap);
-	
+
 	cout<<"Inverted Index Size: "<< II->InvertedIndexListMap.size()<<endl;
 
 	while(true){
@@ -57,6 +57,7 @@ int main(int argc, const char * argv[]) {
 
 		SC->CheckQuery(q);
 
+		cout<<"Search type: "<< IP->GetSearchType()<<" TopK mode: " << IP->GetTopKMode() <<" Synonym: "<< IP->GetSynonymMode()<<endl;
 		if (IP->GetSynonymMode() == SYNONYM_ON) q = SYN->findSynonym(q);
 
 
