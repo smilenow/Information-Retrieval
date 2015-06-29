@@ -85,7 +85,7 @@ string SpellingChecker::CheckWord(const string & queryword)
 
 	if (minDist <= 3)
 	{
-		return result
+		return result;
 	}
 	else
 	{
