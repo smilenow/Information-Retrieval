@@ -4,7 +4,6 @@ OBJECTS = Synonym.o Invertedindex.o Interpreter.o BoolQuery.o PhraseQuery.o Spel
 
 main: $(OBJECTS)
 	$(CC) $(OBJECTS) -o main
-	chmod a+x main
 
 main.o : main.cpp
 	$(CC) $(CFLAGS) -c main.cpp -o main.o

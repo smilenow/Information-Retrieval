@@ -11,6 +11,7 @@
 
 #include <string>
 #include <vector>
+#include "InvertedIndex.h"
 
 using namespace std;
 
@@ -44,7 +45,7 @@ public:
 	int GetSearchType(){return _search_type;};
 	int GetTopKMode(){return _top_k_mode;};
 	int GetSynonymMode(){return _synonym_mode;};
-	vector<pair<string,string> > ProcessQuery(const string query);
+	vector<pair<string,string> > ProcessQuery(InvertedIndex* II, const string query);
 private:
 	int _search_type;
 	int _top_k_mode;

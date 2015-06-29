@@ -63,6 +63,8 @@ public:
     void PrintInvertedIndexList();
     void SaveToFiles();
     void LoadFromFiles();
+    string trim(string);
+    bool CheckStopWord(string);
     
 private:
     string GetFileName(int);
@@ -70,8 +72,6 @@ private:
     void AddToMap(string,int,string);
     void SortByTerm();
     void BuildInvertedIndexList();
-    string trim(string);
-    bool CheckStopWord(string);
     
 // Variable
 public:

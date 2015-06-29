@@ -14,7 +14,7 @@
 
 using namespace std;
 
-vector<pair<string,string> > Interpreter::ProcessQuery(const string query){
+vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const string query){
 	istringstream query_stream(query);
 	string word;
 	vector<int> bool_op_pos;
@@ -37,7 +37,7 @@ vector<pair<string,string> > Interpreter::ProcessQuery(const string query){
 			parameters.push_back(word);
 		}
 		else{
-			query_vector.push_back(word);
+			query_vector.push_back(II->trim(word));
 		}
 		pos++;
 	}
@@ -114,6 +114,12 @@ vector<pair<string,string> > Interpreter::ProcessQuery(const string query){
 			result.push_back(make_pair("AND", q));
 		}
 	}
-
+	int index = 0;
+	for(auto &t: result){
+		if (II->CheckStopWord(t.second)){
+			result.erase(result.begin() + index);
+		}
+		index++;
+	}
 	return result;
 }
