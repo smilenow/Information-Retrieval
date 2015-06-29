@@ -8,10 +8,6 @@
 #include <sstream>
 #include <fstream>
 #include <algorithm>
-// #include "include/rapidjson/document.h"
-// #include "include/rapidjson/writer.h"
-// #include "include/rapidjson/stringbuffer.h"
-// #include "include/rapidjson/filereadstream.h"
 
 using namespace std;
 
@@ -26,6 +22,5 @@ private:
 	int LoadDict();
 	int CalculateEditDist(const string & a, const string & b);
 	string CheckWord(const string & queryword);
-	// vector<string> &SplitAndCheck(const string & query, char delimiter, vector<string> & words);
 };
 #endif

@@ -95,9 +95,26 @@ string SpellingChecker::CheckWord(const string & queryword)
 
 vector< pair<string, string> > SpellingChecker::CheckQuery(vector< pair<string, string> > &query)
 {
+	int isCorrected = false;
+	string t;
 	for (auto &item : query)
 	{
-		item.second = CheckWord(item.second);
+		t = CheckWord(item.second);
+		if (t != item.second)
+		{
+			isCorrected = true;
+		}
+		item.second = t;
+	}
+
+	if (isCorrected)
+	{
+		cout << "Do You Mean : ";
+		for (auto &item : query)
+		{
+			cout << item.second << ' ';
+		}
+		cout << endl;
 	}
 
 	return query;
