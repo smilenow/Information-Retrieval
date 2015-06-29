@@ -56,7 +56,7 @@ void prt(const PhraseQuery::type_PL &P){
 vector<PhraseQuery::type_T> PhraseQuery::positional_intersect(const type_PL &P1,const type_PL &P2,int k){
   vector<PhraseQuery::type_T> ans;
   size_t p1=0,p2=0;
-  prt(P1),prt(P2);
+  // prt(P1),prt(P2);
   while(p1<P1.size() && p2<P2.size()){
     if(P1[p1].DocID==P2[p2].DocID){
       deque<int> l;

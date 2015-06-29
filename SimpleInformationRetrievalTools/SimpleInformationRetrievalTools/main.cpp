@@ -44,7 +44,8 @@ int main(int argc, const char * argv[]) {
 	VSM = new VectorSpaceModel(II->InvertedIndexListMap);
 	CL = new ChampionList(II->InvertedIndexList);
 	CP=new ClusterPruning(II->InvertedIndexListMap);
-
+	PQ=new PhraseQuery(II->PositingListMap);
+	
 	cout<<"Inverted Index Size: "<< II->InvertedIndexListMap.size()<<endl;
 
 	while(true){

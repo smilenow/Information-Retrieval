@@ -12,7 +12,6 @@ ClusterPruning::ClusterPruning(type_II& II,int b1,int b2){
   int pos_cnt=0;
   for(auto &t:*ptr_ii)
     term_pos[t.first]=pos_cnt++;
-  puts("leader******************");
   // for(auto &e:leader)
   //   cout<<e.first<<" "<<g[e.first].size()<<"\n";
 }

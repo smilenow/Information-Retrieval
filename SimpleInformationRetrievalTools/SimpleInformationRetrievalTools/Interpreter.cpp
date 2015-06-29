@@ -93,7 +93,7 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 				
 				if (segment != ""){
 					if (bool_pos == 0){
-						result.push_back(make_pair("AND",segment));
+						result.push_back(make_pair("AND",segment.substr(0, segment.size()-1)));
 					}
 					else{
 						result.push_back(make_pair(query_vector[bool_op_pos[bool_pos-1]],segment.substr(0, segment.size()-1)));
@@ -106,7 +106,7 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 			segment += query_vector[i] + " ";
 		}	
 
-		result.push_back(make_pair(query_vector[bool_op_pos[bool_pos-1]],segment));
+		result.push_back(make_pair(query_vector[bool_op_pos[bool_pos-1]],segment.substr(0, segment.size()-1)));
 
 	}
 	else{
@@ -114,12 +114,12 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 			result.push_back(make_pair("AND", q));
 		}
 	}
-	int index = 0;
+
+	std::vector<pair<string, string> > filtered_result;
 	for(auto &t: result){
-		if (II->CheckStopWord(t.second)){
-			result.erase(result.begin() + index);
+		if (!II->CheckStopWord(t.second)){
+			filtered_result.push_back(t);
 		}
-		index++;
 	}
-	return result;
+	return filtered_result;
 }
