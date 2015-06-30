@@ -51,6 +51,7 @@ void ClusterPruning::construct_leader(){
 }
 
 void ClusterPruning::construct_follower(){
+  //Following commented codes are neccessary
   // ofstream fout("data",std::ofstream::out);
   // int c=0;
   // for(auto &pp:*ptr_ii){
@@ -94,6 +95,7 @@ void ClusterPruning::construct_follower(){
     g[u].push_back(v);
     g[v].push_back(u);
   }
+  gosomeleader();
   fclose(fp);
 }
 
@@ -146,11 +148,32 @@ vector<double> ClusterPruning::get_doc_vec(int doc_id){
   return r;
 }
 
+void ClusterPruning::gosomeleader(){
+  int m=sqrt(n_doc);
+  for(auto &pp:leader){
+    auto f=g.find(pp.first);
+    if(f==g.end())continue;
+    auto &e=f->second;
+    random_shuffle(e.begin(),e.end());
+    if((int)e.size()>m)
+      e.erase(e.begin()+m,e.end());
+  }    
+}
 void ClusterPruning::cmbline(vector<pair<string,double> >&a,vector<pair<string,double> >&b){
-  int s=a.size(),i=0;
+  int s=a.size(),i=0,os=s;
   while(s<50 && i<(int)b.size())
-    a.push_back(b[i++]);
+    a.push_back(b[i++]);  
   a.erase(unique(a.begin(),a.end()),a.end());
+  if(os>10){
+    auto rp=rnd_k(5,5);    
+    vector<pair<string,double> > ra;
+    for(int i=0;i<(int)a.size();++i){
+      bool b=0;
+      for(auto &e:rp)if(i+5==e)b=1;
+      if(!b)ra.push_back(a[i]);
+    }      
+    a=ra;
+  }  
 }
 vector<double> ClusterPruning::get_query_vec(const vector<pair<string, string> >&q){
   auto &dic=*ptr_ii;
@@ -188,6 +211,13 @@ double ClusterPruning::vec_dot(const vector<double> &pa,const vector<double> &pb
   return d;
 }
 
+vector<pair<string,double>> ClusterPruning::query_res(vector<pair<string,string> >&q){
+  auto q_vec=get_query_vec(q);  
+  vector<string> possible_docs;    
+  for(auto &e:leader)
+    possible_docs.push_back(to_string(e.first));
+  return VSM->GetRankingResult(q,possible_docs);
+}
 int ClusterPruning::doc_lb(const vector<InvertedIndex::InvertedIndexListSubNode>&p, int id){
   int l=0,r=(int)p.size()-1;
   while(l<r){
@@ -200,29 +230,9 @@ int ClusterPruning::doc_lb(const vector<InvertedIndex::InvertedIndexListSubNode>
 
 vector<pair<string, double>> ClusterPruning::GetRankingResult(vector<pair<string,string> >&q){
   auto oq=q;
-  auto cres=VSM->GetRankingResult(q);
-  q=oq;
-  auto q_vec=get_query_vec(q);
-  auto ctrs=get_k_nearest(q_vec,b2);
-  vector<pdi> can;
-  vector<string> possible_docs;
-  can.insert(can.begin(),ctrs.begin(),ctrs.end());
-  for(auto &e:can)possible_docs.push_back(to_string(e.second));
-  for(auto &e:ctrs){
-    auto ctr=e.second;
-    for(auto v:g[ctr]){
-//      can.push_back(make_pair(calc_dis(q_vec,v),v));
-      possible_docs.push_back(to_string(v));
-    }
-  }
-  // for(auto &e:possible_docs)
-  //   cout<<e<<" ";cout<<endl;
-  auto qres=VSM->GetRankingResult(q,possible_docs);
+  auto cres=VSM->GetRankingResult(q);  
+  q=oq;  
+  auto qres=query_res(q);
   cmbline(cres,qres);
-  return cres;
-  sort(can.begin(),can.end());
-  vector<pair<string,double> > res;
-  for(auto &e:can)
-    res.push_back(make_pair(to_string(e.second),e.first));
-  return res;
+  return cres;  
 }
