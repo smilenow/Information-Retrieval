@@ -32,7 +32,7 @@ ChampionList *CL;
 VectorSpaceModel *VSM;
 StaticQualityScore *SQS;
 PhraseQuery *PQ;
-TopK *TOPKHEAP;
+TopK *TOPKHEAP = new TopK();
 ClusterPruning *CP;
 
 int main(int argc, const char * argv[]) {
@@ -82,7 +82,7 @@ int main(int argc, const char * argv[]) {
 			res = CL->GetRankingResult(q);
 		}
 		else if (IP->GetTopKMode() == TOP_K_HEAP){
-			res = TOPKHEAP->TopK_Heap(50, CL->GetRankingResult(q));
+			res = TOPKHEAP->TopK_Heap(50, VSM->GetOriginalRankingResult(q));
 		}
 		else if (IP->GetSearchType() == BOOL){
 			res = BoolQuery::FindBoolQuery(q);

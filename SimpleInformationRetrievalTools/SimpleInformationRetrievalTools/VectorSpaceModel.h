@@ -24,6 +24,7 @@ public:
 	~VectorSpaceModel();
 	// <DocID, td-idf> (sorted)
 	vector<pair<string, double>> GetRankingResult(vector<pair<string,string> >& query);
+	vector<pair<string, double>> GetOriginalRankingResult(vector<pair<string,string> >& query);
 	vector<pair<string, double>> GetRankingResult(vector<pair<string,string> >& query, unordered_map<string, double> static_scores);
 	vector<pair<string, double> > GetRankingResult(vector<pair<string,string> >& query, vector<string>& possible_DocIDs);
 
