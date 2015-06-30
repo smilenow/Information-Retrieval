@@ -37,6 +37,7 @@ TopK *TOPKHEAP = new TopK();
 ClusterPruning *CP;
 
 int main(int argc, const char * argv[]) {
+	cout << "Calculating Inverted Index..." << endl;
 	II->LoadStopWordList();
 	II->BuildFromFiles();
 	II->PrintInvertedIndexList();
