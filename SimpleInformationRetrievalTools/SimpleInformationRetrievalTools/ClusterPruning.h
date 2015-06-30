@@ -43,7 +43,9 @@ private:
   double vec_dot(const vector<double> &pa,const vector<double> &pb);
 	vector<double> get_query_vec(const vector<pair<string, string> >&q);
   void cmbline(vector<pair<string,double> >&a,vector<pair<string,double> >&b);
-
+  void gosomeleader();
+  vector<pair<string,double>> query_res(vector<pair<string,string> >&q);
+  
 private:
   int b1,b2;  //clustering pruning parameter
   int n_term;      //number of terms
