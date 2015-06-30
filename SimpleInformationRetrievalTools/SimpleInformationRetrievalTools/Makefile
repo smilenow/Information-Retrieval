@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -std=c++11
+CFLAGS = -std=c++11 -O3
 OBJECTS = Synonym.o Invertedindex.o Interpreter.o BoolQuery.o PhraseQuery.o SpellingChecker.o StaticQualityScore.o TopK.o VectorSpaceModel.o ChampionList.o ClusterPruning.o main.o
 
 main: $(OBJECTS)
