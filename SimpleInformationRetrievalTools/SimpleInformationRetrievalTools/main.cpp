@@ -53,7 +53,6 @@ int main(int argc, const char * argv[]) {
 		cout<<"> ";
 		getline(cin, query);
 		auto q  = IP->ProcessQuery(II, query);
-		auto oldq=q;
 
 		SC->CheckQuery(q);
 
