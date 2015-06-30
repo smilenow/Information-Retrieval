@@ -22,6 +22,8 @@ vector<pair<string,string> > Interpreter::ProcessQuery(InvertedIndex* II, const 
 	vector<string> parameters;
 	vector<pair<string,string> > result;
 	
+	_search_type = NORMAL; _top_k_mode = TOP_K_OFF; _synonym_mode = SYNONYM_OFF;
+	
 	bool search_type_set = false;
 	bool synonym_set = false;
 	bool top_k_set = false;
