@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -std=c++11 -O3
-OBJECTS = Synonym.o Invertedindex.o Interpreter.o BoolQuery.o PhraseQuery.o SpellingChecker.o StaticQualityScore.o TopK.o VectorSpaceModel.o ChampionList.o ClusterPruning.o main.o
+OBJECTS = Synonym.o InvertedIndex.o Interpreter.o BoolQuery.o PhraseQuery.o SpellingChecker.o StaticQualityScore.o TopK.o VectorSpaceModel.o ChampionList.o ClusterPruning.o main.o
 
 main: $(OBJECTS)
 	$(CC) $(OBJECTS) -o main
@@ -11,8 +11,8 @@ main.o : main.cpp
 Synonym.o : Synonym.cpp Synonym.h
 	$(CC) $(CFLAGS) -c Synonym.cpp -o Synonym.o
 
-Invertedindex.o : Invertedindex.cpp Invertedindex.h
-	$(CC) $(CFLAGS) -c Invertedindex.cpp -o Invertedindex.o
+InvertedIndex.o : InvertedIndex.cpp InvertedIndex.h
+	$(CC) $(CFLAGS) -c InvertedIndex.cpp -o InvertedIndex.o
 
 Interpreter.o : Interpreter.cpp Interpreter.h
 	$(CC) $(CFLAGS) -c Interpreter.cpp -o Interpreter.o
