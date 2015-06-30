@@ -200,10 +200,17 @@ vector<string> terms; // merge duplicate terms
 		}
 	}
 
+	vector<string> original_DocIDs;
+	vector<string> docid_intersect;
 	//multiply tf by idf
 	for (int i = 0; i < terms.size(); ++i){
 		if (_inverted_index.find(terms[i])!= _inverted_index.end()){
 			auto nodes = _inverted_index[terms[i]];
+			for(auto &d: nodes ){
+				if (find(original_DocIDs.begin(), original_DocIDs.end(), d.DocID) == original_DocIDs.end()){
+					original_DocIDs.push_back(d.DocID);
+				}
+			}			
 			double df = nodes.size(); //get df
 			double idf = log10(_N / df);
 			query_tfidf[i] *= idf;
@@ -212,10 +219,14 @@ vector<string> terms; // merge duplicate terms
 			query_tfidf[i] = 0;
 		}
 	}
+	
+	std::set_intersection(original_DocIDs.begin(), original_DocIDs.end(),
+                          possible_DocIDs.begin(), possible_DocIDs.end(),
+                          std::back_inserter(docid_intersect));
 
 	NormalizeVector(query_tfidf);
 
-	sort(possible_DocIDs.begin(), possible_DocIDs.end(),[](string id1, string id2){
+	sort(docid_intersect.begin(), docid_intersect.end(),[](string id1, string id2){
 															int p1 = id1.find_last_of(".");
 															int iid1 = stoi(id1.substr(0, p1));	
 
@@ -233,7 +244,7 @@ vector<string> terms; // merge duplicate terms
 			double idf = log10(_N / df);
 
 
-			for (auto & id: possible_DocIDs){
+			for (auto & id: docid_intersect){
 				while(cur_pos < df && CompareDocID(nodes[cur_pos].DocID, id) ){
 					cur_pos++;
 				}
@@ -254,7 +265,7 @@ vector<string> terms; // merge duplicate terms
 			}
 		}
 		else{
-			for (auto & id: possible_DocIDs){
+			for (auto & id: docid_intersect){
 				doc_tfidf[id].push_back(0);
 			}
 		}
