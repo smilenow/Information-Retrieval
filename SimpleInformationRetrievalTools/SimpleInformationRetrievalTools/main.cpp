@@ -10,6 +10,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <chrono>
 #include "InvertedIndex.h"
 #include "BoolQuery.h"
 #include "TopK.h"
@@ -45,13 +46,17 @@ int main(int argc, const char * argv[]) {
 	CL = new ChampionList(II->InvertedIndexList);
 	CP=new ClusterPruning(II->InvertedIndexListMap);
 	PQ=new PhraseQuery(II->PositingListMap);
+	unordered_map<string, double> SQS_score;
 
 	cout<<"Inverted Index Size: "<< II->InvertedIndexListMap.size()<<endl;
-
+	SQS = new StaticQualityScore(II->InvertedIndexList);
+	SQS_score = SQS->GetStaticQualityScore();
+	
 	while(true){
 		string query;
 		cout<<"> ";
 		getline(cin, query);
+		auto start = chrono::system_clock::now();
 		auto q  = IP->ProcessQuery(II, query);
 
 		SC->CheckQuery(q);
@@ -60,15 +65,14 @@ int main(int argc, const char * argv[]) {
 		if (IP->GetSynonymMode() == SYNONYM_ON) q = SYN->findSynonym(q);
 
 
-		unordered_map<string, double> SQS_score;
-		if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
-			SQS = new StaticQualityScore(II->InvertedIndexList);
-			SQS_score = SQS->GetStaticQualityScore();
-		}
+		
+		// if (IP->GetTopKMode() == TOP_K_STATIC_QUALITY_SCORE){
+			
+		// }
 
-		for(auto &r:q){
-			cout <<"op: "<<r.first<<" term: "<<r.second<<endl;
-		}
+		// for(auto &r:q){
+		// 	cout <<"op: "<<r.first<<" term: "<<r.second<<endl;
+		// }
 
 		vector<pair<string, double>> res;
 
@@ -94,6 +98,8 @@ int main(int argc, const char * argv[]) {
 		{
 			res = VSM->GetRankingResult(q);
 		}
+		auto duration = chrono::duration_cast< chrono::milliseconds> (chrono::system_clock::now() - start);
+		cout << "Time Elapsed: " << duration.count() << "ms" << endl;
 
 		cout<<"---------------- TOP 50 RESULTS ----------------" <<endl;
 		int i= 0;

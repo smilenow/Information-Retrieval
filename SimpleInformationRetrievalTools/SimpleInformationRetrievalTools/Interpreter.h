@@ -33,8 +33,8 @@ enum TOP_K_MODE
 
 enum SYNONYM
 {
-	SYNONYM_ON,
-	SYNONYM_OFF
+	SYNONYM_OFF,
+	SYNONYM_ON
 };
 
 class Interpreter
