@@ -20,6 +20,8 @@ vector<pair<string,double> >PhraseQuery::GetRankingResult(const vector<pair<stri
   auto res=get_intersect(cres);
   vector<pair<string,double> >rr;
   for(auto &e:res)rr.push_back(make_pair(e,0.0));
+  sort(rr.begin(),rr.end());
+  rr.erase(unique(rr.begin(),rr.end()),rr.end());
   return rr;
 }
 
