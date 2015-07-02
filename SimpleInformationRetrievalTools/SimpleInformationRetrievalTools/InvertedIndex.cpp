@@ -116,8 +116,8 @@ void InvertedIndex::BuildFromFiles(){
                 if (fin.eof()) break;
 //                cout << str << " ";
                 str = trim(str);
-                if (CheckStopWord(str)) continue;
                 cnt++;
+		if (CheckStopWord(str)) continue;
                 AddToMap(filename,cnt,str);
             }
 //            cout << endl;
